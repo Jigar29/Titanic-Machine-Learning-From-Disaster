@@ -1,7 +1,5 @@
-from src.data_preparation import Datapreparation
+from src.data_preparation import Datapreparation, Titanic
 
 if __name__ == "__main__":
-    train_data_obj = Datapreparation("../data/train.csv")
-    train_data_obj.createDataFrameFromCSVFile()
-    test_data_obj = Datapreparation("../data/test.csv")
-    test_data_obj.createDataFrameFromCSVFile()
+    titanic_obejct = Titanic.getInstance("../data/train.csv", "../data/test.csv")
+    print(titanic_obejct.training_object.dataframe)
