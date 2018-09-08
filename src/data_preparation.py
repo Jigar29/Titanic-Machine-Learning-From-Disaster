@@ -34,8 +34,3 @@ class Datapreparation(object):
     def createTensorObjectFromExcelFile(self):
         self.tensor = tf.read_file(self.filepath, "Data_Tensor")
         return
-
-train_data_obj = Datapreparation("../data/train.csv")
-train_data_obj.createDataFrameFromCSVFile()
-train_data_obj.createDataFrameFromCSVFile()
-test_data_obj  = Datapreparation("../data/test.csv")
