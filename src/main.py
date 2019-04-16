@@ -1,3 +1,4 @@
+from src.legacy.data_preparation import Datapreparation
 from src.titanic_data_preparation import Titanic
 
 if __name__ == "__main__":
