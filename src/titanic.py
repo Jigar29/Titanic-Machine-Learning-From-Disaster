@@ -1,6 +1,7 @@
 from src.data_preparation import Datapreparation
 from src.data_preprocessing import DaraPreprocessing
 from src.model import Model
+from src.data_representation import DataRepresentation
 import pandas as pd
 
 ''' Singleton Class for Titanic Problem'''
@@ -45,6 +46,15 @@ class Titanic(Datapreparation):
         self.training_datafrme = training_preprocessing_obj.labelEncoding("Sex");
         self.training_datafrme = training_preprocessing_obj.minMaxScaling(y_label="Survived");
         print("[EXIT] Preprocessing Completed");
+        return
+
+    def representData(self):
+        self.prepareData();
+        self.preProcessData();
+        representation_obj = DataRepresentation(dataframe=self.training_datafrme);
+        representation_obj.printHead(10);
+        representation_obj.printStatastic();
+        representation_obj.printScatterPlot("Survived");
         return
 
     def autoRun(self):
