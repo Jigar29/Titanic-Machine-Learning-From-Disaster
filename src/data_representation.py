@@ -1,6 +1,8 @@
 import tensorflow as tf
 import pandas as pd
 import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sbn
 
 class DataRepresentation():
     def __init__(self, dataframe={}):
@@ -19,11 +21,8 @@ class DataRepresentation():
         pass
 
     def printScatterPlot(self, output_label =''):
-        plt.scatter(x=self.dataframe.drop(labels=output_label, axis=1), y=self.dataframe[output_label], marker = '*');
+        sbn.pairplot(self.dataframe,x_vars=self.dataframe.to_dict().keys(), y_vars=output_label);
         plt.show();
         return
-
-    def printConfuionMatrix(self):
-        pass
 
 
