@@ -46,7 +46,7 @@ class Titanic(Datapreparation):
         testing_preprocessing_obj  = DataPreprocessing(dataframe=self.testing_dataframe_const);
         submission_preprocessing_obj = DataPreprocessing(dataframe=self.testing_dataframe_const);
 
-        ################################Training Dataset Preprocessing######################################
+        ################################Submission Preprocessing######################################
         temp_df = submission_preprocessing_obj.dropAColumn(col_str=["Fare", "Cabin", "Ticket", "Name", "Embarked"]);
         temp_df = submission_preprocessing_obj.dropNA();
         self.submission_dataframe['PassengerId'] = temp_df['PassengerId'];
@@ -62,16 +62,18 @@ class Titanic(Datapreparation):
         self.testing_dataframe  = testing_preprocessing_obj.dropNA();
         self.testing_dataframe  = testing_preprocessing_obj.labelEncoding("Sex");
         self.testing_dataframe  = testing_preprocessing_obj.minMaxScaling(self.testing_dataframe);
-        print("[EXIT] Preprocessing Completed");
+        print("Data Pre-processing Completed");
         return
 
     def representData(self):
-        self.prepareData();
-        self.preProcessData();
-        representation_obj = DataRepresentation(dataframe=self.training_dataframe);
-        representation_obj.printHead(10);
-        representation_obj.printStatastic();
-        representation_obj.printScatterPlot("Survived");
+        representation_obj = DataRepresentation(dataframe=self.training_dataframe_const);
+        representation_obj.printGlimpse(num_of_entries=10);
+        representation_obj.plotHeatmap(column="NULL");
+        representation_obj.plotCorrelationMatrix();
+        representation_obj.plotHistogram(column=["Age", "Pclass"])
+        representation_obj.plotContplot("Survived", "Sex");
+        representation_obj.plotBoxplot(x_data='Pclass', y_data='Age')
+        representation_obj.plotScatterPlot(x_data='Pclass', ydata='Age', hue="Sex")
         return
 
     def buildSubmissionFile(self, labels=[]):
