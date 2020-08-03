@@ -53,6 +53,10 @@ class DataRepresentation():
         print("", "*******************Dataset Columns*******************", self.dataframe.columns, sep='\n');
         return
 
+    def printValueCounts(self, column):
+        print("", "****************Dataset Value Counts****************", "Column: ", column, self.dataframe[column].value_counts());
+        return
+
     def printGlimpse(self, num_of_entries=5):
         print("", "********************************Dataset Birdeye View********************************", sep='\n');
         self.printHead(num_of_entries)
